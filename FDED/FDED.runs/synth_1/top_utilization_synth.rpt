@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Apr 10 20:52:50 2026
+| Date         : Fri Apr 10 21:44:04 2026
 | Host         : Xi running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -32,17 +32,17 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| CLB LUTs*               |  324 |     0 |          0 |    242400 |  0.13 |
-|   LUT as Logic          |  324 |     0 |          0 |    242400 |  0.13 |
+| CLB LUTs*               | 4730 |     0 |          0 |    242400 |  1.95 |
+|   LUT as Logic          | 4730 |     0 |          0 |    242400 |  1.95 |
 |   LUT as Memory         |    0 |     0 |          0 |    112800 |  0.00 |
-| CLB Registers           |  653 |     0 |          0 |    484800 |  0.13 |
-|   Register as Flip Flop |  653 |     0 |          0 |    484800 |  0.13 |
+| CLB Registers           | 4316 |     0 |          0 |    484800 |  0.89 |
+|   Register as Flip Flop | 4316 |     0 |          0 |    484800 |  0.89 |
 |   Register as Latch     |    0 |     0 |          0 |    484800 |  0.00 |
-| CARRY8                  |    8 |     0 |          0 |     30300 |  0.03 |
-| F7 Muxes                |   64 |     0 |          0 |    121200 |  0.05 |
-| F8 Muxes                |   32 |     0 |          0 |     60600 |  0.05 |
+| CARRY8                  |   63 |     0 |          0 |     30300 |  0.21 |
+| F7 Muxes                |  660 |     0 |          0 |    121200 |  0.54 |
+| F8 Muxes                |   84 |     0 |          0 |     60600 |  0.14 |
 | F9 Muxes                |    0 |     0 |          0 |     30300 |  0.00 |
-| Unique Control Sets     |   79 |       |          0 |     60600 |  0.13 |
+| Unique Control Sets     |  130 |       |          0 |     60600 |  0.21 |
 +-------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 Warning! LUT value is adjusted to account for LUT combining.
@@ -65,7 +65,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 653   |          Yes |       Reset |            - |
+| 4316  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -166,15 +166,15 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------+------+---------------------+
 |  Ref Name | Used | Functional Category |
 +-----------+------+---------------------+
-| FDRE      |  653 |            Register |
-| LUT6      |  219 |                 CLB |
-| LUT5      |   65 |                 CLB |
-| LUT4      |   65 |                 CLB |
-| MUXF7     |   64 |                 CLB |
-| MUXF8     |   32 |                 CLB |
-| LUT3      |   19 |                 CLB |
-| LUT2      |   12 |                 CLB |
-| CARRY8    |    8 |                 CLB |
+| FDRE      | 4316 |            Register |
+| LUT6      | 2622 |                 CLB |
+| LUT3      |  985 |                 CLB |
+| LUT4      |  816 |                 CLB |
+| MUXF7     |  660 |                 CLB |
+| LUT2      |  514 |                 CLB |
+| LUT5      |  486 |                 CLB |
+| MUXF8     |   84 |                 CLB |
+| CARRY8    |   63 |                 CLB |
 | LUT1      |    5 |                 CLB |
 | IBUFCTRL  |    2 |              Others |
 | OBUF      |    1 |                 I/O |

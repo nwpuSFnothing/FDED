@@ -1,0 +1,12 @@
+List of CLB Tiles
+CLE_M_X40Y104
+CLEL_R_X39Y103
+CLEL_R_X39Y113
+CLE_M_X34Y118
+
+List of Congested Nets
+u_sha256/ROTR327_return[16]
+u_sha256/a[7]_i_3_n_0
+u_sha256/W_reg_n_0_[19][15]
+u_sha256/W_reg_n_0_[17][15]
+

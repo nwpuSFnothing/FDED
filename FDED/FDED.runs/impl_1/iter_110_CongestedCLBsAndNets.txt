@@ -1,0 +1,7 @@
+List of CLB Tiles
+CLE_M_X37Y115
+
+List of Congested Nets
+u_sha256/W[15][20]_i_1_n_0
+u_sha256/W_reg[15][30]_i_130_n_0
+

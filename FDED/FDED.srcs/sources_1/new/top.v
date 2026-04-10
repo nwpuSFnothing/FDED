@@ -49,12 +49,13 @@ module top (
         .busy_o  (tx_busy)
     );
 
-    localparam integer MAX_PAYLOAD = 64;
+    localparam integer MAX_PAYLOAD = 55;
 
-    localparam [2:0] S_LEN_HI = 3'd0;
-    localparam [2:0] S_LEN_LO = 3'd1;
-    localparam [2:0] S_RECV   = 3'd2;
-    localparam [2:0] S_SEND   = 3'd3;
+    localparam [2:0] S_LEN_HI   = 3'd0;
+    localparam [2:0] S_LEN_LO   = 3'd1;
+    localparam [2:0] S_RECV     = 3'd2;
+    localparam [2:0] S_SHA_WAIT = 3'd3;
+    localparam [2:0] S_SEND     = 3'd4;
 
     reg [2:0]  state;
     reg [15:0] frame_len;
@@ -63,24 +64,47 @@ module top (
 
     reg [7:0] mem [0:MAX_PAYLOAD-1];
 
+    reg [8*55-1:0] sha_msg_data;
+    reg [7:0]      sha_msg_len;
+    reg            sha_start;
+    wire           sha_busy;
+    wire           sha_done;
+    wire [255:0]   sha_digest;
+
     reg tx_req;
 
     integer i;
+
+    sha256_single_block u_sha256 (
+        .clk        (clk_200m),
+        .rst_n      (rst_n),
+        .start_i    (sha_start),
+        .msg_len_i  (sha_msg_len),
+        .msg_data_i (sha_msg_data),
+        .busy_o     (sha_busy),
+        .done_o     (sha_done),
+        .digest_o   (sha_digest)
+    );
+
     always @(posedge clk_200m) begin
         if (!rst_n) begin
-            state     <= S_LEN_HI;
-            frame_len <= 16'd0;
-            recv_cnt  <= 16'd0;
-            send_cnt  <= 16'd0;
-            tx_data   <= 8'd0;
-            tx_start  <= 1'b0;
-            tx_req    <= 1'b0;
+            state        <= S_LEN_HI;
+            frame_len    <= 16'd0;
+            recv_cnt     <= 16'd0;
+            send_cnt     <= 16'd0;
+            tx_data      <= 8'd0;
+            tx_start     <= 1'b0;
+            tx_req       <= 1'b0;
+            sha_start    <= 1'b0;
+            sha_msg_len  <= 8'd0;
+            sha_msg_data <= {(8*55){1'b0}};
 
             for (i = 0; i < MAX_PAYLOAD; i = i + 1) begin
                 mem[i] <= 8'd0;
             end
         end else begin
-            tx_start <= 1'b0;
+            tx_start  <= 1'b0;
+            sha_start <= 1'b0;
 
             case (state)
                 S_LEN_HI: begin
@@ -115,16 +139,37 @@ module top (
                         recv_cnt <= recv_cnt + 16'd1;
 
                         if (recv_cnt + 16'd1 >= frame_len) begin
-                            send_cnt <= 16'd0;
-                            tx_req   <= 1'b0;
-                            state    <= S_SEND;
+                            for (i = 0; i < 55; i = i + 1) begin
+                                if (i < frame_len) begin
+                                    if (i == recv_cnt)
+                                        sha_msg_data[8*(55-i)-1 -: 8] <= rx_data;
+                                    else
+                                        sha_msg_data[8*(55-i)-1 -: 8] <= mem[i];
+                                end else begin
+                                    sha_msg_data[8*(55-i)-1 -: 8] <= 8'h00;
+                                end
+                            end
+
+                            sha_msg_len <= frame_len[7:0];
+                            sha_start   <= 1'b1;
+                            send_cnt    <= 16'd0;
+                            tx_req      <= 1'b0;
+                            state       <= S_SHA_WAIT;
                         end
                     end
                 end
 
+                S_SHA_WAIT: begin
+                    if (sha_done) begin
+                        send_cnt <= 16'd0;
+                        tx_req   <= 1'b0;
+                        state    <= S_SEND;
+                    end
+                end
+
                 S_SEND: begin
-                    if (!tx_busy && !tx_req && send_cnt < frame_len) begin
-                        tx_data  <= mem[send_cnt];
+                    if (!tx_busy && !tx_req && send_cnt < 16'd32) begin
+                        tx_data  <= sha_digest[255 - send_cnt*8 -: 8];
                         tx_start <= 1'b1;
                         tx_req   <= 1'b1;
                     end
@@ -134,7 +179,7 @@ module top (
                         send_cnt <= send_cnt + 16'd1;
                     end
 
-                    if ((send_cnt == frame_len) && !tx_busy && !tx_req) begin
+                    if ((send_cnt == 16'd32) && !tx_busy && !tx_req) begin
                         state <= S_LEN_HI;
                     end
                 end

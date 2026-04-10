@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Apr 10 20:55:33 2026
+| Date         : Fri Apr 10 21:48:29 2026
 | Host         : Xi running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    79 |
-|    Minimum number of control sets                        |    79 |
+| Total control sets                                       |   130 |
+|    Minimum number of control sets                        |   130 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    11 |
+| Unused register locations in slices containing registers |    71 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    79 |
+| Total control sets |   130 |
 | >= 0 to < 4        |     4 |
 | >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     0 |
-| >= 8 to < 10       |    69 |
-| >= 10 to < 12      |     1 |
+| >= 6 to < 8        |    55 |
+| >= 8 to < 10       |     5 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |     3 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    63 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              15 |            8 |
+| No           | No                    | No                     |              17 |            9 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              42 |            6 |
-| Yes          | No                    | No                     |             560 |           98 |
+| Yes          | No                    | No                     |            3556 |          750 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              36 |           10 |
+| Yes          | Yes                   | No                     |             722 |          238 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -74,84 +74,135 @@ Table of Contents
 |  Clock Signal  |                Enable Signal               |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
 |  clk_200m_BUFG | u_uart_tx/baud_cnt[0]_i_1_n_0              |                               |                1 |              1 |         1.00 |
-|  clk_200m_BUFG | u_uart_tx/E[0]                             |                               |                1 |              2 |         2.00 |
 |  clk_200m_BUFG | u_uart_rx/FSM_sequential_state[1]_i_1_n_0  |                               |                1 |              2 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/bit_idx[0]                       |                               |                2 |              3 |         1.50 |
+|  clk_200m_BUFG | u_uart_rx/bit_idx[0]                       |                               |                1 |              3 |         3.00 |
+|  clk_200m_BUFG | u_uart_rx/E[0]                             |                               |                1 |              3 |         3.00 |
 |  clk_200m_BUFG | u_uart_tx/bit_cnt[3]_i_2_n_0               | u_uart_tx/tx_busy             |                1 |              4 |         4.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_8[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_tx/tx_req_reg[0]                    |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[374]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[494]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[134]_i_1_n_0   |                4 |              7 |         1.75 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[166]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[510]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[486]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[446]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[390]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[414]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[118]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[406]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[102]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[478]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[110]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[78]_i_1_n_0    |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[502]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[86]_i_1_n_0    |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[94]_i_1_n_0    |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[470]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[382]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[462]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[438]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[430]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[422]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[398]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[366]_i_1_n_0   |                4 |              7 |         1.75 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[454]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[342]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[334]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[262]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[246]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[278]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[270]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[302]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[254]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[286]_i_1_n_0   |                4 |              7 |         1.75 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[310]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[350]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[326]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[294]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[358]_i_1_n_0   |                1 |              7 |         7.00 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[318]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[150]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[126]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[214]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[182]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[198]_i_1_n_0   |                3 |              7 |         2.33 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[238]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[230]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[158]_i_1_n_0   |                4 |              7 |         1.75 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[174]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[222]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[206]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[190]_i_1_n_0   |                2 |              7 |         3.50 |
+|  clk_200m_BUFG | u_sha256/block[0]                          | u_sha256/block[142]_i_1_n_0   |                3 |              7 |         2.33 |
 |  clk_200m_BUFG | u_uart_rx/data_o[7]_i_1_n_0                |                               |                2 |              8 |         4.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_2[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_3[0]             |                               |                3 |              8 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_4[0]             |                               |                3 |              8 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_6[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_2[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_10[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_5[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_9[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_7[0]             |                               |                3 |              8 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/E[0]                             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_1[0] |                               |                1 |              8 |         8.00 |
-|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_1[1] |                               |                2 |              8 |         4.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_1[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_11[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_1[0]             |                               |                2 |              8 |         4.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_5[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_9[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_3[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_2[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_2[0]             |                               |                7 |              8 |         1.14 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_3[0]             |                               |                3 |              8 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_0[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_4[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5][0]               |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3][0]               |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_5[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2][0]               |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_14[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_1[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_4[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_11[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_5[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_3[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_4[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_5[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_10[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_6[0]             |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4][0]               |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_12[0]            |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_10[0]            |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_6[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_8[0]             |                               |                7 |              8 |         1.14 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_7[0]             |                               |                1 |              8 |         8.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_8[0]             |                               |                2 |              8 |         4.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[11]_0[0]            |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_9[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_0[0]             |                               |                3 |              8 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_1[0]             |                               |                7 |              8 |         1.14 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_3[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[7][0]               |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[7]_0[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_13[0]            |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_2[0]             |                               |                7 |              8 |         1.14 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_0[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_1[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_7[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_3[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_2[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_15[0]            |                               |                6 |              8 |         1.33 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_0[0]             |                               |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_1[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_4[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_0[0]             |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1][0]               |                               |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_4[0]             |                               |                7 |              8 |         1.14 |
-|  clk_200m_BUFG | u_uart_tx/frame_data[8]_i_1_n_0            |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[0]_0[0] |                               |                1 |              8 |         8.00 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[0]_0[1] |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_tx/frame_data[8]_i_1_n_0            |                               |                1 |              8 |         8.00 |
+|  clk_200m_BUFG | u_uart_tx/E[0]                             |                               |                4 |              8 |         2.00 |
 |  clk_200m_BUFG |                                            | u_uart_tx/baud_cnt[0]_i_1_n_0 |                2 |             11 |         5.50 |
-|  clk_200m_BUFG |                                            |                               |                8 |             15 |         1.88 |
-|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[0]_0[0] | recv_cnt0                     |                6 |             16 |         2.67 |
-|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_0[0] | recv_cnt0                     |                3 |             16 |         5.33 |
+|  clk_200m_BUFG | u_sha256/FSM_sequential_state[2]_i_1_n_0   |                               |                2 |             11 |         5.50 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[2][0]   | u_uart_tx/SR[0]               |                5 |             16 |         3.20 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[2]_2[0] | u_uart_tx/SR[0]               |                6 |             16 |         2.67 |
+|  clk_200m_BUFG |                                            |                               |                9 |             17 |         1.89 |
+|  clk_200m_BUFG | u_sha256/state__0[1]                       | u_sha256/W[0][31]_i_1_n_0     |               11 |             21 |         1.91 |
+|  clk_200m_BUFG | u_sha256/state__0[1]                       | u_sha256/W[15][31]_i_1_n_0    |               19 |             24 |         1.26 |
 |  clk_200m_BUFG |                                            | u_uart_rx/clk_cnt[31]_i_1_n_0 |                4 |             31 |         7.75 |
+|  clk_200m_BUFG | u_sha256/W[54][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[52][31]_i_1_n_0                 |                               |               28 |             32 |         1.14 |
+|  clk_200m_BUFG | u_sha256/W[55][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[59][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[51][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[57][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[50][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[53][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[56][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[33][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[32][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[36][31]_i_1_n_0                 |                               |               27 |             32 |         1.19 |
+|  clk_200m_BUFG | u_sha256/W[38][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[30][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[39][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[31][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[37][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[35][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[23][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[20][31]_i_1_n_0                 |                               |               27 |             32 |         1.19 |
+|  clk_200m_BUFG | u_sha256/W[27][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[28][31]_i_1_n_0                 |                               |               22 |             32 |         1.45 |
+|  clk_200m_BUFG | u_sha256/W[24][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[22][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[21][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[29][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[25][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[26][31]_i_1_n_0                 |                               |               28 |             32 |         1.14 |
+|  clk_200m_BUFG | u_sha256/W[17][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[18][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[16][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[19][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[40][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[45][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[41][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[43][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[44][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[49][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[48][31]_i_1_n_0                 |                               |               28 |             32 |         1.14 |
+|  clk_200m_BUFG | u_sha256/W[47][31]_i_1_n_0                 |                               |               29 |             32 |         1.10 |
+|  clk_200m_BUFG | u_sha256/W[34][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[42][31]_i_1_n_0                 |                               |               24 |             32 |         1.33 |
+|  clk_200m_BUFG | u_sha256/W[46][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[61][31]_i_1_n_0                 |                               |               26 |             32 |         1.23 |
+|  clk_200m_BUFG | u_sha256/W[58][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[62][31]_i_1_n_0                 |                               |               25 |             32 |         1.28 |
+|  clk_200m_BUFG | u_sha256/W[60][31]_i_1_n_0                 |                               |               23 |             32 |         1.39 |
+|  clk_200m_BUFG | u_sha256/W[63][31]_i_1_n_0                 |                               |               27 |             32 |         1.19 |
+|  clk_200m_BUFG | u_sha256/round[6]_i_1_n_0                  |                               |               32 |             36 |         1.12 |
+|  clk_200m_BUFG | u_sha256/block[0]                          |                               |               36 |             64 |         1.78 |
+|  clk_200m_BUFG | u_sha256/H1[31]_i_2_n_0                    | u_sha256/H1[30]_i_1_n_0       |               32 |            120 |         3.75 |
+|  clk_200m_BUFG | u_sha256/H1[31]_i_2_n_0                    | u_sha256/H1[31]_i_1_n_0       |               33 |            136 |         4.12 |
+|  clk_200m_BUFG | u_sha256/b[31]_i_1_n_0                     |                               |               76 |            256 |         3.37 |
+|  clk_200m_BUFG | u_sha256/digest_o[255]_i_1_n_0             |                               |               32 |            256 |         8.00 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[0]_1[0] |                               |               96 |            440 |         4.58 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[2]_1[0] |                               |              163 |            448 |         2.75 |
+|  clk_200m_BUFG | u_sha256/state__0[1]                       |                               |              109 |            460 |         4.22 |
 +----------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
 
 

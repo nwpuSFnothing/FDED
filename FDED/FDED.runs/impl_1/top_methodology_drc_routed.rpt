@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Apr 10 20:56:42 2026
+| Date         : Fri Apr 10 22:06:26 2026
 | Host         : Xi running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,15 +23,271 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max checks: <unlimited>
-             Checks found: 2
+             Checks found: 53
 +-----------+----------+-------------------------------+--------+
 | Rule      | Severity | Description                   | Checks |
 +-----------+----------+-------------------------------+--------+
+| TIMING-16 | Warning  | Large setup violation         | 51     |
 | TIMING-18 | Warning  | Missing input or output delay | 2      |
 +-----------+----------+-------------------------------+--------+
 
 2. REPORT DETAILS
 -----------------
+TIMING-16#1 Warning
+Large setup violation  
+There is a large setup violation of -1.065 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/e_reg[7]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#2 Warning
+Large setup violation  
+There is a large setup violation of -1.068 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[10]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#3 Warning
+Large setup violation  
+There is a large setup violation of -1.110 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[4]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#4 Warning
+Large setup violation  
+There is a large setup violation of -1.166 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[11]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#5 Warning
+Large setup violation  
+There is a large setup violation of -1.205 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[6]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#6 Warning
+Large setup violation  
+There is a large setup violation of -1.222 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[7]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#7 Warning
+Large setup violation  
+There is a large setup violation of -1.224 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[5]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#8 Warning
+Large setup violation  
+There is a large setup violation of -1.236 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[12]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#9 Warning
+Large setup violation  
+There is a large setup violation of -1.251 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[14]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#10 Warning
+Large setup violation  
+There is a large setup violation of -1.266 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[13]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#11 Warning
+Large setup violation  
+There is a large setup violation of -1.274 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[15]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#12 Warning
+Large setup violation  
+There is a large setup violation of -1.336 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[8]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#13 Warning
+Large setup violation  
+There is a large setup violation of -1.342 ns between u_sha256/round_reg[1]_replica_12/C (clocked by sys_clk) and u_sha256/a_reg[9]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#14 Warning
+Large setup violation  
+There is a large setup violation of -1.366 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[17]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#15 Warning
+Large setup violation  
+There is a large setup violation of -1.371 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[11]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#16 Warning
+Large setup violation  
+There is a large setup violation of -1.402 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[16]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#17 Warning
+Large setup violation  
+There is a large setup violation of -1.432 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[10]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#18 Warning
+Large setup violation  
+There is a large setup violation of -1.468 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[18]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#19 Warning
+Large setup violation  
+There is a large setup violation of -1.478 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[14]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#20 Warning
+Large setup violation  
+There is a large setup violation of -1.509 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[12]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#21 Warning
+Large setup violation  
+There is a large setup violation of -1.520 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[23]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#22 Warning
+Large setup violation  
+There is a large setup violation of -1.538 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[22]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#23 Warning
+Large setup violation  
+There is a large setup violation of -1.574 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[19]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#24 Warning
+Large setup violation  
+There is a large setup violation of -1.596 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[13]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#25 Warning
+Large setup violation  
+There is a large setup violation of -1.598 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[15]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#26 Warning
+Large setup violation  
+There is a large setup violation of -1.600 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[21]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#27 Warning
+Large setup violation  
+There is a large setup violation of -1.624 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[16]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#28 Warning
+Large setup violation  
+There is a large setup violation of -1.658 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[24]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#29 Warning
+Large setup violation  
+There is a large setup violation of -1.658 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[26]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#30 Warning
+Large setup violation  
+There is a large setup violation of -1.664 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[19]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#31 Warning
+Large setup violation  
+There is a large setup violation of -1.680 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[20]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#32 Warning
+Large setup violation  
+There is a large setup violation of -1.694 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[21]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#33 Warning
+Large setup violation  
+There is a large setup violation of -1.696 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[18]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#34 Warning
+Large setup violation  
+There is a large setup violation of -1.707 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/e_reg[28]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#35 Warning
+Large setup violation  
+There is a large setup violation of -1.718 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[23]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#36 Warning
+Large setup violation  
+There is a large setup violation of -1.727 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[17]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#37 Warning
+Large setup violation  
+There is a large setup violation of -1.734 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[20]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#38 Warning
+Large setup violation  
+There is a large setup violation of -1.737 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/e_reg[29]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#39 Warning
+Large setup violation  
+There is a large setup violation of -1.745 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[25]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#40 Warning
+Large setup violation  
+There is a large setup violation of -1.759 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/a_reg[22]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#41 Warning
+Large setup violation  
+There is a large setup violation of -1.762 ns between u_sha256/W_reg[9][1]/C (clocked by sys_clk) and u_sha256/e_reg[27]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#42 Warning
+Large setup violation  
+There is a large setup violation of -1.766 ns between u_sha256/W_reg[34][22]/C (clocked by sys_clk) and u_sha256/e_reg[30]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#43 Warning
+Large setup violation  
+There is a large setup violation of -1.821 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[28]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#44 Warning
+Large setup violation  
+There is a large setup violation of -1.836 ns between u_sha256/round_reg[0]_replica_3/C (clocked by sys_clk) and u_sha256/e_reg[31]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#45 Warning
+Large setup violation  
+There is a large setup violation of -1.864 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[24]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#46 Warning
+Large setup violation  
+There is a large setup violation of -1.868 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[26]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#47 Warning
+Large setup violation  
+There is a large setup violation of -1.889 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[25]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#48 Warning
+Large setup violation  
+There is a large setup violation of -1.901 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[27]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#49 Warning
+Large setup violation  
+There is a large setup violation of -1.926 ns between u_sha256/W_reg[34][22]/C (clocked by sys_clk) and u_sha256/a_reg[30]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#50 Warning
+Large setup violation  
+There is a large setup violation of -1.930 ns between u_sha256/W_reg[37][13]/C (clocked by sys_clk) and u_sha256/a_reg[29]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#51 Warning
+Large setup violation  
+There is a large setup violation of -1.950 ns between u_sha256/W_reg[34][22]/C (clocked by sys_clk) and u_sha256/a_reg[31]/D (clocked by sys_clk). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
 TIMING-18#1 Warning
 Missing input or output delay  
 An input delay is missing on uart_rxd relative to the rising and/or falling clock edge(s) of sys_clk.
