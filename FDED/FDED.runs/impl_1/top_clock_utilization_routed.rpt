@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date              : Fri Apr 10 19:29:51 2026
+| Date              : Fri Apr 10 19:48:07 2026
 | Host              : Xi running 64-bit major release  (build 9200)
 | Command           : report_clock_utilization -file top_clock_utilization_routed.rpt
 | Design            : top
@@ -47,7 +47,7 @@ Table of Contents
 +-----------+-----------+-----------------+------------+--------------+--------------+------+-------------------+------------------+-------------------+-------------+-----------------+--------------+---------+----------------------+---------------+
 | Global Id | Source Id | Driver Type/Pin | Constraint | Site         | Clock Region | Root | Clock Delay Group | Clock Low Fanout | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock   | Driver Pin           | Net           |
 +-----------+-----------+-----------------+------------+--------------+--------------+------+-------------------+------------------+-------------------+-------------+-----------------+--------------+---------+----------------------+---------------+
-| g0        | src0      | BUFGCE/O        | None       | BUFGCE_X0Y24 | X0Y1         | X2Y1 |                   |                  |                 2 |          50 |               0 |        5.000 | sys_clk | clk_200m_BUFG_inst/O | clk_200m_BUFG |
+| g0        | src0      | BUFGCE/O        | None       | BUFGCE_X0Y24 | X0Y1         | X2Y1 |                   |                  |                 2 |          90 |               0 |        5.000 | sys_clk | clk_200m_BUFG_inst/O | clk_200m_BUFG |
 +-----------+-----------+-----------------+------------+--------------+--------------+------+-------------------+------------------+-------------------+-------------+-----------------+--------------+---------+----------------------+---------------+
 * Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
 ** Non-Clock Loads column represents cell count of non-clock pin loads
@@ -111,11 +111,11 @@ Table of Contents
 | X3Y0              |      0 |      24 |      0 |   24000 |      0 |    3360 |      0 |      48 |      0 |      48 |      0 |       4 |      0 |       1 |
 | X0Y1              |      0 |      24 |      0 |   23040 |      0 |    5760 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
 | X1Y1              |      0 |      24 |      0 |   24000 |      0 |    6240 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
-| X2Y1              |      1 |      24 |      8 |   25920 |      0 |    7200 |      0 |      48 |      0 |     144 |      0 |       0 |      0 |       0 |
+| X2Y1              |      1 |      24 |      3 |   25920 |      0 |    7200 |      0 |      48 |      0 |     144 |      0 |       0 |      0 |       0 |
 | X3Y1              |      0 |      24 |      0 |   24000 |      0 |    3360 |      0 |      48 |      0 |      48 |      0 |       4 |      0 |       0 |
 | X0Y2              |      0 |      24 |      0 |   23040 |      0 |    5760 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
 | X1Y2              |      0 |      24 |      0 |   24000 |      0 |    6240 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
-| X2Y2              |      1 |      24 |     42 |   25920 |      0 |    7200 |      0 |      48 |      0 |     144 |      0 |       0 |      0 |       0 |
+| X2Y2              |      1 |      24 |     87 |   25920 |      0 |    7200 |      0 |      48 |      0 |     144 |      0 |       0 |      0 |       0 |
 | X3Y2              |      0 |      24 |      0 |   24000 |      0 |    3360 |      0 |      48 |      0 |      48 |      0 |       4 |      0 |       0 |
 | X0Y3              |      0 |      24 |      0 |   23040 |      0 |    5760 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
 | X1Y3              |      0 |      24 |      0 |   24000 |      0 |    6240 |      0 |      72 |      0 |      96 |      0 |       0 |      0 |       0 |
@@ -182,7 +182,7 @@ All Modules
 +-----------+-----------------+-------------------+---------+-------------+---------------+----------+-------------+----------+----------------+----------+---------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock   | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net           |
 +-----------+-----------------+-------------------+---------+-------------+---------------+----------+-------------+----------+----------------+----------+---------------+
-| g0        | BUFGCE/O        | X0Y1              | sys_clk |       5.000 | {0.000 2.500} | X2Y1     |          50 |        0 |              0 |        0 | clk_200m_BUFG |
+| g0        | BUFGCE/O        | X0Y1              | sys_clk |       5.000 | {0.000 2.500} | X2Y1     |          90 |        0 |              0 |        0 | clk_200m_BUFG |
 +-----------+-----------------+-------------------+---------+-------------+---------------+----------+-------------+----------+----------------+----------+---------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -195,8 +195,8 @@ All Modules
 +----+--------+----+-------+----+-----------------------+
 | Y4 |      0 |  0 |     0 |  0 |                     - |
 | Y3 |      0 |  0 |     0 |  0 |                     - |
-| Y2 |      0 |  0 |    42 |  0 |                     0 |
-| Y1 |  (D) 0 |  0 | (R) 8 |  0 |                     0 |
+| Y2 |      0 |  0 |    87 |  0 |                     0 |
+| Y1 |  (D) 0 |  0 | (R) 3 |  0 |                     0 |
 | Y0 |      0 |  0 |     0 |  0 |                     - |
 +----+--------+----+-------+----+-----------------------+
 
@@ -207,7 +207,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net           |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
-| g0        | 0     | BUFGCE/O        | None       |           8 |               0 |  8 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_200m_BUFG |
+| g0        | 0     | BUFGCE/O        | None       |           3 |               0 |  3 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_200m_BUFG |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
 * Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
 ** Non-Clock Loads column represents cell count of non-clock pin loads
@@ -220,7 +220,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net           |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
-| g0        | 0     | BUFGCE/O        | None       |          42 |               0 | 42 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_200m_BUFG |
+| g0        | 0     | BUFGCE/O        | None       |          87 |               0 | 87 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_200m_BUFG |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------+
 * Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
 ** Non-Clock Loads column represents cell count of non-clock pin loads

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xcku040-ffva1156-2-i" LaunchTime="1775820366" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/uart_tx.dcp">
+<GenRun Id="synth_1" LaunchPart="xcku040-ffva1156-2-i" LaunchTime="1775821496" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/uart_tx.dcp">
   <File Type="PA-TCL" Name="top.tcl"/>
   <File Type="REPORTS-TCL" Name="top_reports.tcl"/>
   <File Type="RDS-RDS" Name="top.vds"/>
@@ -13,7 +13,6 @@
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../rtl/uart_rx.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -66,9 +65,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

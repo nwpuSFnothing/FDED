@@ -3,10 +3,10 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Fri Apr 10 19:31:52 2026
-# Process ID         : 36048
+# Start of session at: Fri Apr 10 19:50:57 2026
+# Process ID         : 33500
 # Current directory  : C:/Users/14854/Desktop/dedup/FDED
-# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent36628 C:\Users\14854\Desktop\dedup\FDED\FDED.xpr
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent34728 C:\Users\14854\Desktop\dedup\FDED\FDED.xpr
 # Log file           : C:/Users/14854/Desktop/dedup/FDED/vivado.log
 # Journal file       : C:/Users/14854/Desktop/dedup/FDED\vivado.jou
 # Running On         : Xi
@@ -19,7 +19,7 @@
 # Host memory        : 16782 MB
 # Swap memory        : 10200 MB
 # Total Virtual      : 26982 MB
-# Available Virtual  : 12003 MB
+# Available Virtual  : 10767 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/14854/Desktop/dedup/FDED/FDED.xpr
@@ -131,44 +131,4 @@ WARNING: [Project 1-5713] Board part '' set for the project  is not found. Board
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/AMDDesignTools/2025.2/Vivado/data/ip'.
-open_project: Time (s): cpu = 00:00:21 ; elapsed = 00:00:09 . Memory (MB): peak = 1707.148 ; gain = 216.266
-update_compile_order -fileset sources_1
-open_hw_manager
-connect_hw_server -allow_non_jtag
-INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
-INFO: [Labtools 27-2222] Launching hw_server...
-INFO: [Labtools 27-2221] Launch Output:
-
-****** Xilinx hw_server v2025.2
-  **** Build date : Oct 28 2025 at 10:03:13
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-
-
-INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
-INFO: [Labtools 27-3417] Launching cs_server...
-INFO: [Labtools 27-2221] Launch Output:
-
-
-******** Xilinx cs_server v2025.2.0
-  ****** Build date   : Nov 14 2025-07:16:52
-    **** Build number : 2025.2.1763075812
-      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
-      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
-
-
-
-connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1712.348 ; gain = 5.199
-open_hw_target
-INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210512180081
-set_property PROGRAM.FILE {C:/Users/14854/Desktop/dedup/FDED/FDED.runs/impl_1/top.bit} [get_hw_devices xcku040_0]
-current_hw_device [get_hw_devices xcku040_0]
-refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcku040_0] 0]
-INFO: [Labtools 27-1435] Device xcku040 (JTAG device index = 0) is not programmed (DONE status = 0).
-set_property PROBES.FILE {} [get_hw_devices xcku040_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xcku040_0]
-set_property PROGRAM.FILE {C:/Users/14854/Desktop/dedup/FDED/FDED.runs/impl_1/top.bit} [get_hw_devices xcku040_0]
-program_hw_devices [get_hw_devices xcku040_0]
-INFO: [Labtools 27-3164] End of startup status: HIGH
-program_hw_devices: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1776.047 ; gain = 0.145
-refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
-INFO: [Labtools 27-1434] Device xcku040 (JTAG device index = 0) is programmed with a design that has no supported soft debug core(s) in it.
+open_project: Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 1709.848 ; gain = 233.328

@@ -57,7 +57,6 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param general.usePosixSpawnForFork 1
-set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xcku040-ffva1156-2-i
@@ -74,6 +73,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/Users/14854/Desktop/dedup/rtl/uart_rx.v
   C:/Users/14854/Desktop/dedup/rtl/uart_tx.v
   C:/Users/14854/Desktop/dedup/rtl/top.v
 }
