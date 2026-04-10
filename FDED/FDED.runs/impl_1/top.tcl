@@ -107,7 +107,6 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param general.usePosixSpawnForFork 1
   set_param chipscope.maxJobs 4
-  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 8  }
   open_checkpoint top_routed.dcp
   set_property webtalk.parent_dir C:/Users/14854/Desktop/dedup/FDED/FDED.cache/wt [current_project]

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Fri Apr 10 19:46:56 2026
+| Date         : Fri Apr 10 20:55:33 2026
 | Host         : Xi running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    11 |
-|    Minimum number of control sets                        |    11 |
+| Total control sets                                       |    79 |
+|    Minimum number of control sets                        |    79 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    10 |
+| Unused register locations in slices containing registers |    11 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    11 |
-| >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     3 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     3 |
-| >= 10 to < 12      |     0 |
+| Total control sets |    79 |
+| >= 0 to < 4        |     4 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |    69 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     1 |
-| >= 16              |     1 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,32 +58,100 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              14 |            6 |
+| No           | No                    | No                     |              15 |            8 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              38 |           12 |
+| No           | Yes                   | No                     |              42 |            6 |
+| Yes          | No                    | No                     |             560 |           98 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              38 |           11 |
+| Yes          | Yes                   | No                     |              36 |           10 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+----------------------------------+----------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |           Enable Signal          |         Set/Reset Signal         | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+----------------------------------+----------------------------------+------------------+----------------+--------------+
-|  clk_200m_BUFG | u_uart_tx/tx_i_1_n_0             |                                  |                1 |              1 |         1.00 |
-|  clk_200m_BUFG | u_uart_rx/bit_cnt[3]_i_1_n_0     | u_uart_rx/baud_cnt[31]_i_1_n_0   |                1 |              4 |         4.00 |
-|  clk_200m_BUFG | u_uart_tx/tx_busy                | u_uart_tx/baud_cnt[8]_i_1__0_n_0 |                2 |              4 |         2.00 |
-|  clk_200m_BUFG | u_uart_tx/bit_cnt[0]             | u_uart_tx/baud_cnt[8]_i_1__0_n_0 |                2 |              4 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/baud_cnt[11]_i_1_n_0   |                                  |                3 |              6 |         2.00 |
-|  clk_200m_BUFG | u_uart_tx/baud_cnt[10]_i_1_n_0   |                                  |                3 |              7 |         2.33 |
-|  clk_200m_BUFG | u_uart_rx/data_o[7]_i_1_n_0      |                                  |                4 |              8 |         2.00 |
-|  clk_200m_BUFG | u_uart_rx/E[0]                   |                                  |                5 |              8 |         1.60 |
-|  clk_200m_BUFG | u_uart_tx/baud_cnt[8]_i_1__0_n_0 |                                  |                3 |              8 |         2.67 |
-|  clk_200m_BUFG |                                  |                                  |                6 |             14 |         2.33 |
-|  clk_200m_BUFG | u_uart_rx/receiving_reg_n_0      | u_uart_rx/baud_cnt[31]_i_1_n_0   |                7 |             26 |         3.71 |
-+----------------+----------------------------------+----------------------------------+------------------+----------------+--------------+
++----------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                Enable Signal               |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
+|  clk_200m_BUFG | u_uart_tx/baud_cnt[0]_i_1_n_0              |                               |                1 |              1 |         1.00 |
+|  clk_200m_BUFG | u_uart_tx/E[0]                             |                               |                1 |              2 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state[1]_i_1_n_0  |                               |                1 |              2 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/bit_idx[0]                       |                               |                2 |              3 |         1.50 |
+|  clk_200m_BUFG | u_uart_tx/bit_cnt[3]_i_2_n_0               | u_uart_tx/tx_busy             |                1 |              4 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_8[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_tx/tx_req_reg[0]                    |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/data_o[7]_i_1_n_0                |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_2[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_3[0]             |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_4[0]             |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_6[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_2[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_10[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_5[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_9[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_7[0]             |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/E[0]                             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_1[0] |                               |                1 |              8 |         8.00 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_1[1] |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_1[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[0]_11[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_1[0]             |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_5[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_9[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_3[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_2[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_2[0]             |                               |                7 |              8 |         1.14 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_3[0]             |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_0[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_4[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5][0]               |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3][0]               |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_5[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2][0]               |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_14[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_1[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_4[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_11[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_5[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_3[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_4[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_5[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_10[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_6[0]             |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4][0]               |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_12[0]            |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_10[0]            |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_6[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_8[0]             |                               |                7 |              8 |         1.14 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_7[0]             |                               |                1 |              8 |         8.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_8[0]             |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[11]_0[0]            |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_9[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_0[0]             |                               |                3 |              8 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_1[0]             |                               |                7 |              8 |         1.14 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_3[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[7][0]               |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[7]_0[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_13[0]            |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_2[0]             |                               |                7 |              8 |         1.14 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1]_0[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_1[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_7[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[3]_3[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_2[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_15[0]            |                               |                6 |              8 |         1.33 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_0[0]             |                               |                4 |              8 |         2.00 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[4]_1[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[5]_4[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_0[0]             |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[1][0]               |                               |                5 |              8 |         1.60 |
+|  clk_200m_BUFG | u_uart_rx/recv_cnt_reg[2]_4[0]             |                               |                7 |              8 |         1.14 |
+|  clk_200m_BUFG | u_uart_tx/frame_data[8]_i_1_n_0            |                               |                2 |              8 |         4.00 |
+|  clk_200m_BUFG |                                            | u_uart_tx/baud_cnt[0]_i_1_n_0 |                2 |             11 |         5.50 |
+|  clk_200m_BUFG |                                            |                               |                8 |             15 |         1.88 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[0]_0[0] | recv_cnt0                     |                6 |             16 |         2.67 |
+|  clk_200m_BUFG | u_uart_rx/FSM_sequential_state_reg[1]_0[0] | recv_cnt0                     |                3 |             16 |         5.33 |
+|  clk_200m_BUFG |                                            | u_uart_rx/clk_cnt[31]_i_1_n_0 |                4 |             31 |         7.75 |
++----------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
 
 

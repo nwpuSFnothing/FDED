@@ -1,0 +1,21 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: F:/AMDDesignTools/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_uart_behav xil_defaultlib.tb_uart xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/14854/Desktop/dedup/rtl/top.v" Line 1. Module top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/14854/Desktop/dedup/rtl/uart_rx.v" Line 1. Module uart_rx_default doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/14854/Desktop/dedup/rtl/uart_tx.v" Line 1. Module uart_tx_default doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.IBUFDS
+Compiling module xil_defaultlib.uart_rx_default
+Compiling module xil_defaultlib.uart_tx_default
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.tb_uart
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_uart_behav

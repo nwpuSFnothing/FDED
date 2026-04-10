@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date             : Fri Apr 10 19:48:05 2026
+| Date             : Fri Apr 10 20:56:44 2026
 | Host             : Xi running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -52,13 +52,14 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.003 |        3 |       --- |             --- |
-| CLB Logic      |    <0.001 |      237 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      106 |    242400 |            0.04 |
-|   Register     |    <0.001 |       90 |    484800 |            0.02 |
-|   CARRY8       |    <0.001 |        4 |     30300 |            0.01 |
-|   Others       |     0.000 |        8 |       --- |             --- |
-| Signals        |    <0.001 |      171 |       --- |             --- |
+| Clocks         |     0.004 |        3 |       --- |             --- |
+| CLB Logic      |    <0.001 |     1150 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      322 |    242400 |            0.13 |
+|   Register     |    <0.001 |      653 |    484800 |            0.13 |
+|   CARRY8       |    <0.001 |        8 |     30300 |            0.03 |
+|   Others       |     0.000 |        9 |       --- |             --- |
+|   F7/F8 Muxes  |     0.000 |       96 |    242400 |            0.04 |
+| Signals        |    <0.001 |      862 |       --- |             --- |
 | I/O            |     0.003 |        4 |       520 |            0.77 |
 | Static Power   |     0.693 |          |           |                 |
 | Total          |     0.701 |          |           |                 |
@@ -148,8 +149,6 @@ Table of Contents
 +----------------+-----------+
 | top            |     0.008 |
 |   u_ibufds_clk |     0.003 |
-|   u_uart_rx    |     0.003 |
-|   u_uart_tx    |     0.001 |
 +----------------+-----------+
 
 

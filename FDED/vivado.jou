@@ -23,3 +23,111 @@
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/14854/Desktop/dedup/FDED/FDED.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/14854/Desktop/dedup/FDED/FDED.runs/impl_1/top.bit} [get_hw_devices xcku040_0]
+current_hw_device [get_hw_devices xcku040_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcku040_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xcku040_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xcku040_0]
+set_property PROGRAM.FILE {C:/Users/14854/Desktop/dedup/FDED/FDED.runs/impl_1/top.bit} [get_hw_devices xcku040_0]
+program_hw_devices [get_hw_devices xcku040_0]
+refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xcku040_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xcku040_0]
+set_property PROGRAM.FILE {C:/Users/14854/Desktop/dedup/FDED/FDED.runs/impl_1/top.bit} [get_hw_devices xcku040_0]
+program_hw_devices [get_hw_devices xcku040_0]
+refresh_hw_device [lindex [get_hw_devices xcku040_0] 0]
+file mkdir C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test1.v w ]
+add_files -fileset sim_1 C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test1.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+source tb_uart.tcl
+current_wave_config {Untitled 1}
+add_wave {{/tb_uart/uut/rx_data}} 
+current_wave_config {Untitled 1}
+add_wave {{/tb_uart/uut/rx_done}} 
+current_wave_config {Untitled 1}
+add_wave {{/tb_uart/uut/state}} 
+current_wave_config {Untitled 1}
+add_wave {{/tb_uart/uut/mem}} 
+run all
+close_sim
+launch_simulation
+source tb_uart.tcl
+current_wave_config {Untitled 2}
+add_wave {{/tb_uart/uut/u_uart_tx/data_i}} 
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v w ]
+add_files -fileset sim_1 C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v
+update_compile_order -fileset sim_1
+run all
+current_wave_config {Untitled 2}
+add_wave {{/tb_uart/uut/u_uart_rx/data_o}} 
+export_ip_user_files -of_objects  [get_files C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test1.v] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test1.v
+file delete -force C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test1.v
+update_compile_order -fileset sim_1
+close_sim
+launch_simulation
+source tb_uart.tcl
+current_wave_config {Untitled 3}
+add_wave {{/tb_uart/uut/rx_data}} 
+current_wave_config {Untitled 3}
+add_wave {{/tb_uart/uut/tx_data}} 
+run 2 ms
+synth_design -top top -part xcku040-ffva1156-2-i -lint 
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+add_bp {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} 19
+remove_bps -file {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} -line 19
+add_bp {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} 19
+remove_bps -file {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} -line 19
+add_bp {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} 24
+remove_bps -file {C:/Users/14854/Desktop/dedup/rtl/uart_tx.v} -line 24
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+launch_runs impl_1 -jobs 8
+wait_on_run impl_1
+export_ip_user_files -of_objects  [get_files C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v
+file delete -force C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v
+export_ip_user_files -of_objects  [get_files C:/Users/14854/Desktop/dedup/rtl/top.v] -no_script -reset -force -quiet
+remove_files  C:/Users/14854/Desktop/dedup/rtl/top.v
+update_compile_order -fileset sources_1
+file mkdir C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sources_1/new
+close [ open C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sources_1/new/top.v w ]
+add_files C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sources_1/new/top.v
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top top [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+close_sim

@@ -1,0 +1,10 @@
+0.7
+2020.2
+Nov 14 2025
+19:37:27
+C:/Users/14854/Desktop/dedup/FDED/FDED.sim/sim_1/behav/xsim/glbl.v,1756381829,verilog,,,,glbl,,,,,,,,
+,,,,,,tb_uart,,,,,,,,
+,,,,,,,,,,,,,,
+C:/Users/14854/Desktop/dedup/rtl/top.v,1775823552,verilog,,C:/Users/14854/Desktop/dedup/rtl/uart_rx.v,,top,,,F:/AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/14854/Desktop/dedup/rtl/uart_rx.v,1775822924,verilog,,C:/Users/14854/Desktop/dedup/rtl/uart_tx.v,,uart_rx,,,F:/AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/14854/Desktop/dedup/rtl/uart_tx.v,1775822414,verilog,,C:/Users/14854/Desktop/dedup/FDED/FDED.srcs/sim_1/new/test.v,,uart_tx,,,F:/AMDDesignTools/2025.2/Vivado/data/rsb/busdef,,,,,

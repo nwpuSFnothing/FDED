@@ -1,71 +1,104 @@
-module uart_tx #(
+module uart_rx #(
     parameter integer CLK_FREQ  = 200_000_000,
     parameter integer BAUD_RATE = 115200
 )(
     input  wire       clk,
     input  wire       rst_n,
-    input  wire       start_i,
-    input  wire [7:0] data_i,
-    output reg        tx,
-    output reg        busy_o
+    input  wire       rx,
+    output reg [7:0]  data_o,
+    output reg        done_o
 );
 
-    localparam integer BAUD_CNT_MAX = CLK_FREQ / BAUD_RATE;
+    localparam integer CLKS_PER_BIT  = CLK_FREQ / BAUD_RATE;
+    localparam integer HALF_CLKS_BIT = CLKS_PER_BIT / 2;
 
-    reg [31:0] baud_cnt;
-    reg [3:0]  bit_cnt;
-    reg [9:0]  frame_data;
+    localparam [1:0] S_IDLE  = 2'd0;
+    localparam [1:0] S_START = 2'd1;
+    localparam [1:0] S_DATA  = 2'd2;
+    localparam [1:0] S_STOP  = 2'd3;
+
+    reg [1:0] state;
+    reg [31:0] clk_cnt;
+    reg [2:0] bit_idx;
+    reg [7:0] data_buf;
+
+    reg rx_d0, rx_d1;
+
+    always @(posedge clk) begin
+        rx_d0 <= rx;
+        rx_d1 <= rx_d0;
+    end
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            tx         <= 1'b1;
-            busy_o     <= 1'b0;
-            baud_cnt   <= 32'd0;
-            bit_cnt    <= 4'd0;
-            frame_data <= 10'h3FF;
+            state    <= S_IDLE;
+            clk_cnt  <= 32'd0;
+            bit_idx  <= 3'd0;
+            data_buf <= 8'd0;
+            data_o   <= 8'd0;
+            done_o   <= 1'b0;
         end else begin
-            if (!busy_o) begin
-                tx <= 1'b1;
-                baud_cnt <= 32'd0;
-                bit_cnt <= 4'd0;
+            done_o <= 1'b0;
 
-                if (start_i) begin
-                    busy_o <= 1'b1;
-                    frame_data <= {1'b1, data_i, 1'b0}; // stop, data[7:0], start
-                    tx <= 1'b0;                          // 先发起始位
-                    baud_cnt <= 32'd0;
-                    bit_cnt <= 4'd0;
-                end
-            end else begin
-                if (baud_cnt == BAUD_CNT_MAX - 1) begin
-                    baud_cnt <= 32'd0;
-                    bit_cnt  <= bit_cnt + 1'b1;
+            case (state)
+                S_IDLE: begin
+                    clk_cnt <= 32'd0;
+                    bit_idx <= 3'd0;
 
-                    case (bit_cnt)
-                        4'd0: tx <= frame_data[1];
-                        4'd1: tx <= frame_data[2];
-                        4'd2: tx <= frame_data[3];
-                        4'd3: tx <= frame_data[4];
-                        4'd4: tx <= frame_data[5];
-                        4'd5: tx <= frame_data[6];
-                        4'd6: tx <= frame_data[7];
-                        4'd7: tx <= frame_data[8];
-                        4'd8: begin
-                            tx <= frame_data[9]; // stop bit
-                        end
-                        4'd9: begin
-                            tx <= 1'b1;
-                            busy_o <= 1'b0;
-                        end
-                        default: begin
-                            tx <= 1'b1;
-                            busy_o <= 1'b0;
-                        end
-                    endcase
-                end else begin
-                    baud_cnt <= baud_cnt + 1'b1;
+                    if (rx_d1 == 1'b0) begin
+                        state <= S_START;
+                    end
                 end
-            end
+
+                S_START: begin
+                    if (clk_cnt == HALF_CLKS_BIT - 1) begin
+                        clk_cnt <= 32'd0;
+
+                        if (rx_d1 == 1'b0) begin
+                            state <= S_DATA;
+                            bit_idx <= 3'd0;
+                        end else begin
+                            state <= S_IDLE;
+                        end
+                    end else begin
+                        clk_cnt <= clk_cnt + 32'd1;
+                    end
+                end
+
+                S_DATA: begin
+                    if (clk_cnt == CLKS_PER_BIT - 1) begin
+                        clk_cnt <= 32'd0;
+                        data_buf[bit_idx] <= rx_d1;
+
+                        if (bit_idx == 3'd7) begin
+                            bit_idx <= 3'd0;
+                            state <= S_STOP;
+                        end else begin
+                            bit_idx <= bit_idx + 3'd1;
+                        end
+                    end else begin
+                        clk_cnt <= clk_cnt + 32'd1;
+                    end
+                end
+
+                S_STOP: begin
+                    if (clk_cnt == CLKS_PER_BIT - 1) begin
+                        clk_cnt <= 32'd0;
+                        state <= S_IDLE;
+
+                        if (rx_d1 == 1'b1) begin
+                            data_o <= data_buf;
+                            done_o <= 1'b1;
+                        end
+                    end else begin
+                        clk_cnt <= clk_cnt + 32'd1;
+                    end
+                end
+
+                default: begin
+                    state <= S_IDLE;
+                end
+            endcase
         end
     end
 
